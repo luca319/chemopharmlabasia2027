@@ -1,1 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabAsia 2027 Campaign | Lucas Ho</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-teal: #2B7A78;
+            --primary-navy: #1E3A5F;
+            --accent-orange: #D35400;
+            --accent-gold: #F59E0B;
+            --text-dark: #1a1a1a;
+            --text-medium: #4a5568;
+            --text-light: #718096;
+            --bg-white: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-teal-subtle: #f0fdfa;
+            --border-light: #e2e8f0;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+        .delay-5 { animation-delay: 0.5s; opacity: 0; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-teal) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header-label {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+
+        .header-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        .header-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-alt {
+            background-color: var(--bg-light);
+        }
+
+        .section-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary-teal);
+            margin-bottom: 10px;
+        }
+
+        .section-heading {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 25px;
+        }
+
+        /* Executive Summary */
+        .summary-content {
+            background: linear-gradient(135deg, var(--bg-teal-subtle) 0%, var(--bg-white) 100%);
+            border-left: 4px solid var(--primary-teal);
+            padding: 30px;
+            border-radius: 0 12px 12px 0;
+            font-size: 1.05rem;
+            color: var(--text-medium);
+        }
+
+        /* Strategy Cards */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .strategy-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strategy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-teal), var(--accent-orange));
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(43, 122, 120, 0.15);
+        }
+
+        .strategy-card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--primary-navy));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .strategy-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 12px;
+        }
+
+        .strategy-card p {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+        }
+
+        /* Strategy Vertical Cards */
+        .strategy-vertical-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .strategy-vertical-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .strategy-vertical-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-teal), var(--accent-orange));
+        }
+
+        .strategy-vertical-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(43, 122, 120, 0.12);
+        }
+
+        .strategy-vertical-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 25px 30px 15px 30px;
+        }
+
+        .strategy-vertical-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--primary-navy));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .strategy-vertical-header h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin: 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary-teal);
+        }
+
+        .strategy-vertical-content {
+            padding: 0 30px 25px 30px;
+        }
+
+        .strategy-vertical-content p {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .strategy-vertical-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-message {
+            font-size: 1.25rem !important;
+            font-weight: 600;
+            color: var(--primary-navy) !important;
+            font-style: italic;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, var(--bg-teal-subtle), rgba(255,255,255,0));
+            border-left: 4px solid var(--accent-orange);
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px !important;
+        }
+
+        .strategy-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 0 0;
+        }
+
+        .strategy-bullets li {
+            position: relative;
+            padding: 12px 0 12px 25px;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .strategy-bullets li:last-child {
+            border-bottom: none;
+        }
+
+        .strategy-bullets li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-orange);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .strategy-bullets li strong {
+            color: var(--primary-navy);
+        }
+
+        .strategy-bullets li em {
+            color: var(--primary-teal);
+            font-style: italic;
+        }
+
+        /* Deliverable Sections */
+        .deliverable-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .deliverable-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .deliverable-image {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .deliverable-image:hover {
+            transform: scale(1.02);
+        }
+
+        .deliverable-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .deliverable-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 15px;
+        }
+
+        .deliverable-info p {
+            color: var(--text-medium);
+            margin-bottom: 20px;
+        }
+
+        .specs-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .specs-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.95rem;
+        }
+
+        .specs-list li:last-child {
+            border-bottom: none;
+        }
+
+        .specs-label {
+            color: var(--text-light);
+            min-width: 100px;
+        }
+
+        .specs-value {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(211, 84, 0, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(211, 84, 0, 0.4);
+        }
+
+        /* Rationale Section */
+        .rationale-grid {
+            display: grid;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .rationale-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 25px;
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .rationale-card:hover {
+            border-color: var(--primary-teal);
+            box-shadow: 0 10px 30px rgba(43, 122, 120, 0.1);
+        }
+
+        .rationale-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-navy), var(--primary-teal));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .rationale-content h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 12px;
+        }
+
+        .rationale-content p {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 600px) {
+            .rationale-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .rationale-number {
+                margin: 0 auto;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-navy);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            opacity: 0.85;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .footer-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-teal), var(--accent-orange));
+            margin: 30px auto;
+            border-radius: 2px;
+        }
+
+        .footer-note {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .header .subtitle {
+                font-size: 1rem;
+            }
+            .section-heading {
+                font-size: 1.5rem;
+            }
+            .section {
+                padding: 40px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content animate-fade-in-up">
+            <div class="header-label">Take-Home Assignment Submission</div>
+            <h1>LabAsia 2027 Campaign</h1>
+            <p class="subtitle">Integrated "Save the Date" & Booth Announcement Campaign</p>
+            <div class="header-meta">
+                <span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Lucas Ho
+                </span>
+                <span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    February 12, 2025
+                </span>
+                <span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    Chemopharm Sdn Bhd
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Executive Summary -->
+    <section class="section">
+        <div class="container">
+            <div class="animate-fade-in-up delay-1">
+                <p class="section-title">Overview</p>
+                <h2 class="section-heading">Executive Summary</h2>
+                <div class="summary-content">
+                    <p style="font-weight: 600; color: var(--primary-navy); margin-bottom: 15px; font-size: 1.1rem;">Strategic Campaign Overview: Everlife-Chemopharm @ LabAsia 2027</p>
+                    <p style="margin-bottom: 15px;">This submission details a synchronized, multi-channel marketing campaign developed for Everlife-Chemopharm's flagship presence at LabAsia 2027. To maximize regional visibility and brand authority, the strategy utilizes a dual-asset approach:</p>
+                    <ul style="list-style: none; margin-bottom: 15px;">
+                        <li style="padding: 10px 0; padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent-orange); font-weight: bold;">•</span>
+                            <strong>Digital Engagement:</strong> A high-impact LinkedIn flyer engineered for feed visibility and broad-scale digital reach.
+                        </li>
+                        <li style="padding: 10px 0; padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent-orange); font-weight: bold;">•</span>
+                            <strong>VIP Outreach:</strong> A premium A5 tactile invitation designed specifically for high-value client engagement and personalized relationship management.
+                        </li>
+                    </ul>
+                    <p>By unifying cutting-edge scientific visual motifs with a cohesive brand identity, this campaign positions Chemopharm as an industry-leading innovator. The primary objective is to create a seamless omni-channel experience that transitions potential leads from digital awareness to physical booth engagement, ultimately driving measurable conversion and market share within the ASEAN laboratory sector.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campaign Strategy -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="animate-fade-in-up delay-2">
+                <p class="section-title">Strategic Foundation</p>
+                <h2 class="section-heading">Campaign Strategy</h2>
+                <div class="strategy-vertical-grid">
+                    <!-- Card 1: Target Audience -->
+                    <div class="strategy-vertical-card">
+                        <div class="strategy-vertical-header">
+                            <div class="strategy-vertical-icon">🎯</div>
+                            <h3>Target Audience & Market Segmentation</h3>
+                        </div>
+                        <div class="strategy-vertical-content">
+                            <p>The campaign targets high-level Strategic Stakeholders and Key Opinion Leaders (KOLs) across the ASEAN region, specifically focusing on:</p>
+                            <ul class="strategy-bullets">
+                                <li>
+                                    <strong>Clinical Diagnostics & Life Sciences:</strong> Lab Directors and Principal Researchers.
+                                </li>
+                                <li>
+                                    <strong>Industrial & Research Sectors:</strong> Procurement Officers and Facility Managers.
+                                </li>
+                                <li>
+                                    <strong>Regional Reach:</strong> Leveraging LabAsia 2027 as the primary touchpoint for the ASEAN scientific community to drive regional market penetration.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Card 2: Core Value Proposition -->
+                    <div class="strategy-vertical-card">
+                        <div class="strategy-vertical-header">
+                            <div class="strategy-vertical-icon">💡</div>
+                            <h3>Core Value Proposition (Key Message)</h3>
+                        </div>
+                        <div class="strategy-vertical-content">
+                            <p class="highlight-message">"Experience Tomorrow's Lab Today"</p>
+                            <p>This message positions Everlife-Chemopharm not merely as a distributor, but as the premier <strong>Innovation Partner</strong>. We are framing the booth as a <strong>"Knowledge Hub"</strong> where attendees transition from passive observers to active participants through <strong>Live Product Demonstrations</strong> and bespoke <strong>Expert Consultations</strong>.</p>
+                        </div>
+                    </div>
+                    <!-- Card 3: Visual Identity -->
+                    <div class="strategy-vertical-card">
+                        <div class="strategy-vertical-header">
+                            <div class="strategy-vertical-icon">🎨</div>
+                            <h3>Visual Identity & Brand Differentiation</h3>
+                        </div>
+                        <div class="strategy-vertical-content">
+                            <p>The creative strategy utilizes <strong>"Scientific Minimalism"</strong> to stand out in a cluttered exhibition environment.</p>
+                            <ul class="strategy-bullets">
+                                <li>
+                                    <strong>Thematic Motif:</strong> Abstract 3D DNA helices and molecular lattices represent the "Building Blocks of Innovation."
+                                </li>
+                                <li>
+                                    <strong>Palette Strategy:</strong> The deep teal-to-navy gradient establishes a foundation of <em>Professional Authority</em>, while the warm gold (#D35400) accents highlight <em>Innovation and Energy</em>.
+                                </li>
+                                <li>
+                                    <strong>Competitive Edge:</strong> This aesthetic purposefully avoids the generic, cluttered "catalog-style" imagery used by competitors, reinforcing Chemopharm's status as a premium, forward-thinking brand.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deliverable 1: LinkedIn Flyer -->
+    <section class="section">
+        <div class="container">
+            <div class="animate-fade-in-up delay-3">
+                <p class="section-title">Deliverable 1</p>
+                <h2 class="section-heading">LinkedIn Event Flyer</h2>
+                <div class="deliverable-container">
+                    <div class="deliverable-image">
+                        <!-- LinkedIn Flyer Image -->
+                        <img src="https://raw.githubusercontent.com/luca319/chemopharmlabasia2027/e4a2865540839012f391da46b0faca3373bd7e53/1.jpg.jpeg" alt="LabAsia 2027 LinkedIn Flyer">
+                    </div>
+                    <div class="deliverable-info">
+                        <h3>Digital Campaign Asset</h3>
+                        <p>A conversion-optimized, high-fidelity creative engineered for maximum feed disruption. This asset leverages strategic visual hierarchy to transform digital impressions into measurable event registrations and pre-scheduled booth appointments.</p>
+                        <ul class="specs-list">
+                            <li>
+                                <span class="specs-label">Dimensions</span>
+                                <span class="specs-value">1080 × 1080 pixels</span>
+                            </li>
+                            <li>
+                                <span class="specs-label">Format</span>
+                                <span class="specs-value">PNG / JPG (RGB)</span>
+                            </li>
+                            <li>
+                                <span class="specs-label">Platform</span>
+                                <span class="specs-value">LinkedIn Feed</span>
+                            </li>
+                            <li>
+                                <span class="specs-label">Purpose</span>
+                                <span class="specs-value">Save the Date / Awareness</span>
+                            </li>
+                        </ul>
+                        <a href="https://raw.githubusercontent.com/luca319/chemopharmlabasia2027/e4a2865540839012f391da46b0faca3373bd7e53/1.jpg.jpeg" class="download-btn" download target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Download High-Res
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deliverable 2: A5 Print Flyer -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="animate-fade-in-up delay-4">
+                <p class="section-title">Deliverable 2</p>
+                <h2 class="section-heading">A5 Print Invitation</h2>
+                <div class="deliverable-container">
+                    <div class="deliverable-info">
+                        <h3>Premium VIP Invitation</h3>
+                        <p>A bespoke, high-specification A5 print asset optimized for Tier-1 stakeholder engagement. Engineered for both targeted direct-mail outreach and high-touch networking environments, this invitation utilizes a comprehensive value-driven content architecture to articulate our competitive advantages and secure exclusive pre-scheduled appointments.</p>
+                        <ul class="specs-list">
+                            <li>
+                                <span class="specs-label">Dimensions</span>
+                                <span class="specs-value">148 × 210 mm (A5)</span>
+                            </li>
+                            <li>
+                                <span class="specs-label">Bleed</span>
+                                <span class="specs-value">3mm all sides</span>
+                            </li>
+                            <li>
+                                <span class="specs-label">Format</span>
+                                <span class="specs-value">Print-Ready PDF (CMYK)</span>
+                            </li>
+                            <li>
+                                <span class="specs-label">Purpose</span>
+                                <span class="specs-value">VIP Client Invitation</span>
+                            </li>
+                        </ul>
+                        <a href="https://raw.githubusercontent.com/luca319/chemopharmlabasia2027/8f515d811f8929c61ddb5f3602c54741ab58284e/A5-4.jpg.jpeg" class="download-btn" download target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Download High-Res
+                        </a>
+                    </div>
+                    <div class="deliverable-image">
+                        <!-- A5 Print Flyer Image -->
+                        <img src="https://raw.githubusercontent.com/luca319/chemopharmlabasia2027/8f515d811f8929c61ddb5f3602c54741ab58284e/A5-4.jpg.jpeg" alt="LabAsia 2027 A5 Print Invitation">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Rationale -->
+    <section class="section">
+        <div class="container">
+            <div class="animate-fade-in-up delay-5">
+                <p class="section-title">Creative Direction</p>
+                <h2 class="section-heading">Design Rationale</h2>
+                <div class="rationale-grid">
+                    <div class="rationale-card">
+                        <div class="rationale-number">1</div>
+                        <div class="rationale-content">
+                            <h3>Strategic Information Architecture</h3>
+                            <p>The layout utilizes a strict visual hierarchy designed for high "stopping power." By positioning the headline as the primary focal point, followed by structured event metadata and a high-contrast Call-to-Action (CTA), we ensure that both digital scrollers on LinkedIn and VIP print recipients can digest the core value proposition and logistics in under three seconds — driving measurable impact on booth traffic and lead generation at LabAsia 2027.</p>
+                        </div>
+                    </div>
+                    <div class="rationale-card">
+                        <div class="rationale-number">2</div>
+                        <div class="rationale-content">
+                            <h3>Conceptual Visual Storytelling</h3>
+                            <p>We purposefully transitioned away from generic laboratory stock photography in favor of abstract 3D DNA helices and molecular lattices. This creative choice serves two purposes: it positions Everlife-Chemopharm as a pioneer in scientific innovation and mirrors the brand's core pillars of "Curiosity" and "Aspiration." The result is a sophisticated, tech-forward aesthetic that differentiates our presence from the standard "equipment-heavy" imagery of competitors at LabAsia 2027.</p>
+                        </div>
+                    </div>
+                    <div class="rationale-card">
+                        <div class="rationale-number">3</div>
+                        <div class="rationale-content">
+                            <h3>Cross-Platform Brand Cohesion</h3>
+                            <p>The visual identity is anchored in a Deep Teal and Navy gradient, punctuated by Warm Gold (#D35400) accents to provide energy and premium "glow." By maintaining identical color profiles, typographic families (Montserrat/Poppins), and "atmospheric" lighting across both the 1080×1080 LinkedIn asset and the A5 VIP Print Invitation, we create a unified campaign experience that reinforces brand recall at every touchpoint.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>Thank You for Reviewing</h3>
+            <p>I appreciate the opportunity to demonstrate my approach to integrated campaign design.</p>
+            <p>Looking forward to discussing this work further.</p>
+            
+            <div class="footer-divider"></div>
+            
+            <p><strong>Lucas Ho</strong></p>
+            <p>lucas.ho8115@gmail.com</p>
+            <p>+6012-647 3822</p>
+            
+            <p class="footer-note">Submitted for Corporate Marketing & Communications Manager Position</p>
+        </div>
+    </footer>
+
+</body>
+</html>
